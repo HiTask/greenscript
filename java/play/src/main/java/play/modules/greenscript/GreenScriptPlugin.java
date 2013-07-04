@@ -25,6 +25,7 @@ import play.Play;
 import play.Play.Mode;
 import play.PlayPlugin;
 import play.cache.Cache;
+import play.db.jpa.MySQLDialect;
 import play.exceptions.NoRouteFoundException;
 import play.exceptions.UnexpectedException;
 import play.jobs.Job;
@@ -684,13 +685,7 @@ public class GreenScriptPlugin extends PlayPlugin {
 		if (!urlPath.endsWith("/"))
 			urlPath = urlPath + "/";
 		// add version info
-		VirtualFile vf = Play.getVirtualFile(".version");
-		if (null != vf) {
-			String v = vf.contentAsString();
-			urlPath = urlPath + v + "/";
-		} else {
-			urlPath = urlPath + "null/";
-		}
+		urlPath = urlPath + SELF_VERSION + "/";
 		if (urlPath.startsWith("/")) {
 			return urlPath.startsWith(ctxPath) ? urlPath : ctxPath + urlPath;
 		} else {
