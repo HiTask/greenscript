@@ -25,12 +25,12 @@ under the License.
 <relativePath>../</relativePath>
 <groupId>com.github.greenlaw110.greenscript</groupId>
 <artifactId>greenscript-parent</artifactId>
-                <version>1.2.9-SNAPSHOT</version>
+                <version>1.2.12</version>
 </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>greenscript-play</artifactId>
-    <version>1.2.9</version>
+    <version>1.2.12</version>
     <packaging>jar</packaging>
 
     <name>Play! GreenScript Module</name>
@@ -59,7 +59,7 @@ under the License.
     <properties>
         <play.manifest.section>Play</play.manifest.section>
         <manifest.specification.title>greenscript module</manifest.specification.title>
-        <play.module.frameworkVersions>1.2</play.module.frameworkVersions>
+        <play.module.frameworkVersions>1.2.5</play.module.frameworkVersions>
 
         <play.version>1.2.5</play.version>
     </properties>
