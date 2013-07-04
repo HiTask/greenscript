@@ -1,3 +1,5 @@
 *.eml
 *.iml
 .idea/
+java/core/bin/pom.xmljava/core/bin
+java/play/bin

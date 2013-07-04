@@ -70,9 +70,7 @@ under the License.
         <file>
             <source>${project.build.directory}/manifest</source>
         </file>
-    </files>
-
-    <dependencySets>
+    </files>    <dependencySets>
         <dependencySet>
             <outputDirectory>lib</outputDirectory>
         </dependencySet>

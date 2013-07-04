@@ -21,16 +21,16 @@ under the License.
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <parent>
-        <groupId>com.google.code.maven-play-plugin</groupId>
-        <artifactId>play-module-default-parent</artifactId>
-        <version>1.0.0-alpha6</version>
-    </parent>
+<parent>
+<relativePath>../</relativePath>
+<groupId>com.github.greenlaw110.greenscript</groupId>
+<artifactId>greenscript-parent</artifactId>
+                <version>1.2.9-SNAPSHOT</version>
+</parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.greenlaw110.greenscript</groupId>
     <artifactId>greenscript-play</artifactId>
-    <version>1.2.9b</version>
+    <version>1.2.9</version>
     <packaging>jar</packaging>
 
     <name>Play! GreenScript Module</name>
@@ -61,7 +61,7 @@ under the License.
         <manifest.specification.title>greenscript module</manifest.specification.title>
         <play.module.frameworkVersions>1.2</play.module.frameworkVersions>
 
-        <play.version>1.2</play.version>
+        <play.version>1.2.5</play.version>
     </properties>
 
     <dependencies>
@@ -123,6 +123,14 @@ under the License.
                                 <exclude>controllers/**</exclude>
                             </excludes>
                         </configuration>
+                        <executions>
+                        <execution>
+                        <phase>compile</phase>
+                        <goals>
+                        <goal>jar</goal>
+                        </goals>
+                        </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
@@ -139,6 +147,10 @@ under the License.
                         <executions>
                             <execution>
                                 <id>make-assembly</id>
+                                <phase>verify</phase>
+                            			    <goals>
+                            							<goal>single</goal>
+                            										</goals>
                                 <configuration>
                                     <appendAssemblyId>false</appendAssemblyId>
                                     <descriptors>
