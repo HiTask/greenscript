@@ -15,6 +15,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.jboss.netty.handler.codec.http.HttpHeaders.Names;
@@ -28,6 +29,7 @@ import play.exceptions.NoRouteFoundException;
 import play.exceptions.UnexpectedException;
 import play.jobs.Job;
 import play.jobs.JobsPlugin;
+import play.libs.IO;
 import play.libs.Time;
 import play.mvc.Controller;
 import play.mvc.Http;
@@ -62,7 +64,7 @@ import com.greenscriptool.utils.IBufferLocator;
  */
 public class GreenScriptPlugin extends PlayPlugin {
 
-	public static final String VERSION = "1.2.11b";
+	public static final String VERSION = "1.2.12";
 
 	private static String msg_(String msg, Object... args) {
 		return String.format("GreenScript-" + VERSION + "> %1$s",
@@ -79,6 +81,19 @@ public class GreenScriptPlugin extends PlayPlugin {
 
 	private static void debug_(String msg, Object... args) {
 		Logger.info(msg_(msg, args));
+	}
+
+	public static String SELF_VERSION = "null";
+
+	static {
+		String depContent = IO.readContentAsString(new File(new File(
+				Play.applicationPath, "conf"), "dependencies.yml"));
+		Pattern pattern = Pattern.compile("self:.* ([0-9a-zA-Z.]+)");
+		Matcher matcher = pattern.matcher(depContent);
+		if (matcher.find() && matcher.groupCount() == 1) {
+			SELF_VERSION = matcher.group(1);
+			Logger.info("Version path from self module: " + SELF_VERSION);
+		}
 	}
 
 	private Minimizer jsM_;
@@ -743,8 +758,6 @@ public class GreenScriptPlugin extends PlayPlugin {
 
 		m.setUrlContextPath(Play.ctxPath);
 		m.setResourceUrlRoot(urlRoot);
-		// TODO shoud we do something here
-		// resourceUrl = StaticRouteResolver.addVersion(resourceUrl);
 		m.setResourceUrlPath(resourceUrl);
 		m.setCacheUrlPath(cacheUrl);
 		m.setRootDir(rootDir);
