@@ -1,5 +1,14 @@
 *.eml
 *.iml
 .idea/
-java/core/bin/pom.xmljava/core/bin
+java/core/bin
 java/play/bin
+java/core/.classpath
+java/core/.project
+java/core/.settings/
+java/.project
+java/play/.classpath
+java/play/.settings/
+java/play/target/
+java/core/target/
+java/play/.project
