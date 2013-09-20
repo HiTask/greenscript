@@ -755,8 +755,9 @@ public class GreenScriptPlugin extends PlayPlugin {
 			} else if (key.endsWith(".css")) {
 				minimizer = cssM_;
 			}
-
-			resource = minimizer.minimize(resourceNames);
+			if (null != minimizer) {
+				resource = minimizer.minimize(resourceNames);
+			}
 		}
 
 		return null == resource ? null : resource.toString();
