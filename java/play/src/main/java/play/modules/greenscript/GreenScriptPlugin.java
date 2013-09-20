@@ -25,7 +25,6 @@ import play.Play;
 import play.Play.Mode;
 import play.PlayPlugin;
 import play.cache.Cache;
-import play.db.jpa.MySQLDialect;
 import play.exceptions.NoRouteFoundException;
 import play.exceptions.UnexpectedException;
 import play.jobs.Job;
@@ -372,44 +371,6 @@ public class GreenScriptPlugin extends PlayPlugin {
 
 		return false;
 	}
-
-	// private static final Pattern P_IMPORT =
-	// Pattern.compile(".*@import\\s*\"(.*?)\".*");
-	// private Set<File> imports_(File file) {
-	// String key = "less_imports_" + file.getPath() + file.lastModified();
-	//
-	// @SuppressWarnings("unchecked")
-	// Set<File> files = Cache.get(key, Set.class);
-	// if (null == files) {
-	// files = new HashSet<File>();
-	// try {
-	// List<String> lines = IO.readLines(file);
-	// for (String line: lines) {
-	// Matcher m = P_IMPORT.matcher(line);
-	// while (m.find()) {
-	// File f = new File(file.getParentFile(), m.group(1));
-	// files.add(f);
-	// files.addAll(imports_(f));
-	// }
-	// }
-	// } catch (Exception e) {
-	// Logger.error(e, "Error occurred getting @imports from resource: $s",
-	// file);
-	// }
-	// }
-	// return files;
-	// }
-
-	// private long lastModified_(VirtualFile file, ResourceType type) {
-	// long l = file.lastModified();
-	// if (ResourceType.CSS == type) {
-	// // try to get last modified of all @imported files
-	// for (File f: imports_(file.getRealFile())) {
-	// l = Math.max(l, f.lastModified());
-	// }
-	// }
-	// return l;
-	// }
 
 	private void keepFlash_() {
 		Flash f = Flash.current();
