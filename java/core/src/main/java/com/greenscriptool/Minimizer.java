@@ -355,7 +355,7 @@ public class Minimizer implements IMinimizer {
         }
     }
 
-    private final String getExtension_(String path) {
+    private final static String getExtension_(String path) {
         int pos = path.lastIndexOf(".");
         return -1 == pos ? "" : path.substring(pos, path.length());
     }
@@ -712,7 +712,7 @@ public class Minimizer implements IMinimizer {
         }
     }
 
-    private String fileToString_(File f) throws IOException {
+    private static String fileToString_(File f) throws IOException {
         BufferedReader r = new BufferedReader(new FileReader(f));
         String l = null;
         StringBuilder sb = new StringBuilder();
@@ -725,7 +725,7 @@ public class Minimizer implements IMinimizer {
         return sb.toString();
     }
 
-    private List<String> fileToLines_(File f) throws IOException {
+    private static List<String> fileToLines_(File f) throws IOException {
         BufferedReader r = new BufferedReader(new FileReader(f));
         String l = null;
         List<String> lines = new ArrayList<String>();
@@ -777,7 +777,7 @@ public class Minimizer implements IMinimizer {
         return s;
     }
 
-    private boolean postMergeLessCompile_() {
+    private static boolean postMergeLessCompile_() {
         return Boolean.valueOf(System.getProperty("greenscript.lessCompile.postMerge", "false"));
     }
 
@@ -929,7 +929,7 @@ public class Minimizer implements IMinimizer {
 
     private final static Pattern P_CDN_PREFIX = Pattern.compile("^https?:");
 
-    private final boolean isCDN_(String resourceName) {
+    private final static boolean isCDN_(String resourceName) {
         if (null == resourceName) return false;
         Matcher m = P_CDN_PREFIX.matcher(resourceName);
         return m.find();
