@@ -484,6 +484,7 @@ public class Minimizer implements IMinimizer {
             try {
                 return fileToString_(file);
             } catch (IOException e1) {
+            	logger_.error(e1);
                 return "";
             }
         }
@@ -707,8 +708,7 @@ public class Minimizer implements IMinimizer {
             s = m.replaceAll("url(" + prefix + "$1)");
             return s;
         } catch (Throwable e) {
-            System.err.println("Error process relative URL: " + fn);
-            e.printStackTrace(System.err);
+            logger_.error("Error process relative URL: " + fn, e);
             return s;
         }
     }
