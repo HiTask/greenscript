@@ -944,5 +944,4 @@ public class Minimizer implements IMinimizer {
     public void setResourcesParam(String resourcesParam_) {
         this.resourcesParam_ = resourcesParam_;
     }
-
 }
