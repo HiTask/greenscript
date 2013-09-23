@@ -10,6 +10,7 @@ import org.jcoffeescript.JCoffeeScriptCompileException;
 import org.jcoffeescript.JCoffeeScriptCompiler;
 
 import javax.inject.Inject;
+
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.*;
@@ -49,7 +50,7 @@ public class Minimizer implements IMinimizer {
             throw new NullPointerException();
         compressor_ = compressor;
         type_ = type;
-        less_ = new LessEngine();
+		less_ = new LessEngine();
         coffee_ = new JCoffeeScriptCompiler();
     }
 
