@@ -8,4 +8,5 @@ GreenScript is distributed under <a href="http://www.apache.org/licenses/LICENSE
 
 Build
 
-mvn verify -Pdist -Pcompile-app
+* you need lesscss-engine version 1.4.2 in case it is not in the repo compile it yourself https://github.com/asual/lesscss-engine
+* mvn verify -Pdist -Pcompile-app
