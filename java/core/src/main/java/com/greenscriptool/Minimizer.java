@@ -555,6 +555,11 @@ public class Minimizer implements IMinimizer {
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
+            try {
+				sw.close();
+			} catch (IOException e) {
+				logger_.warn("cannot close string writer in minimizor", e);
+			}
             if (null != out) {
                 try {
                     out.close();
