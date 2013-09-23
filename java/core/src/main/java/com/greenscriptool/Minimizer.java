@@ -824,7 +824,7 @@ public class Minimizer implements IMinimizer {
             }
         }
         if (null == s) s = fileToString_(file);
-        if (ResourceType.CSS == type_) s = processRelativeUrl_(s, originalFn);
+        // if (ResourceType.CSS == type_) s = processRelativeUrl_(s, originalFn);
         return s;
     }
 
