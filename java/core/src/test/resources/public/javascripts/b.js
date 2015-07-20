@@ -1,1 +1,1 @@
-var b = function() {alert('b');}
+var b = function() {alert('alert里包含中文消息');}

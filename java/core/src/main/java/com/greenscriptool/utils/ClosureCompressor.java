@@ -33,13 +33,14 @@ public class ClosureCompressor implements ICompressor {
         if (ResourceType.JS != type) throw new IllegalArgumentException("ClosureCompressor does not support CSS compression");
         type_ = type;
         com.google.javascript.jscomp.Compiler.setLoggingLevel(Level.FINE);
+        options.setOutputCharset("UTF-8");
         CompilationLevel.WHITESPACE_ONLY.setOptionsForCompilationLevel(options);
     }
 
     @Override
     public void compress(Reader r, Writer w) throws Exception {
         com.google.javascript.jscomp.Compiler compiler = new com.google.javascript.jscomp.Compiler();
-        JSSourceFile file = JSSourceFile.fromInputStream("greenscript.js", new ReaderInputStream(r));
+        JSSourceFile file = JSSourceFile.fromInputStream("greenscript.js", new ReaderInputStream(r,"UTF-8"));
         List<JSSourceFile> files = new ArrayList<JSSourceFile>();
         files.add(file);
         Result result = compiler.compile(externalJavascriptFiles, files, options);
