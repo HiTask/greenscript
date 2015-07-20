@@ -1,11 +1,6 @@
 package com.greenscriptool.utils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 
 import com.greenscriptool.IFileLocator;
 import com.greenscriptool.IResource;
@@ -37,8 +32,8 @@ public class FileResource implements IResource {
     @Override
     public Reader getReader() {
         try {
-            return null == file_ ? null : new FileReader(file_);
-        } catch (FileNotFoundException e) {
+            return null == file_ ? null : new InputStreamReader(new FileInputStream(file_),"UTF-8");
+        } catch (IOException e) {
             return null;
         }
     }
@@ -46,7 +41,7 @@ public class FileResource implements IResource {
     @Override
     public Writer getWriter() {
         try {
-            return null == file_ ? null : new FileWriter(file_);
+            return null == file_ ? null : new OutputStreamWriter(new FileOutputStream(file_),"UTF-8");
         } catch (Exception e) {
             return null;
         }

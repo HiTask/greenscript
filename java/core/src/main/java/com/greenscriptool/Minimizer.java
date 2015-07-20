@@ -54,7 +54,7 @@ public class Minimizer implements IMinimizer {
     }
 
     public Minimizer(ResourceType type) {
-        ICompressor compressor = type == ResourceType.CSS ? new YUICompressor(type) : new SimpleJSCompressor(type);
+        ICompressor compressor = type == ResourceType.CSS ? new YUICompressor(type) : new ClosureCompressor(type);
         init_(compressor, type);
     }
 
@@ -418,7 +418,7 @@ public class Minimizer implements IMinimizer {
 
     private void compress(File file, Writer out) {
         try {
-            Reader r = new BufferedReader(new FileReader(file));
+            Reader r = new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
             try {
                 compressor_.compress(r, out);
             } catch (Exception e) {
@@ -713,7 +713,7 @@ public class Minimizer implements IMinimizer {
     }
 
     private String fileToString_(File f) throws IOException {
-        BufferedReader r = new BufferedReader(new FileReader(f));
+        BufferedReader r = new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
         String l = null;
         StringBuilder sb = new StringBuilder();
         String ls = System.getProperty("line.separator");
@@ -726,7 +726,7 @@ public class Minimizer implements IMinimizer {
     }
 
     private List<String> fileToLines_(File f) throws IOException {
-        BufferedReader r = new BufferedReader(new FileReader(f));
+        BufferedReader r = new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
         String l = null;
         List<String> lines = new ArrayList<String>();
         while ((l = r.readLine()) != null) {
@@ -873,7 +873,7 @@ public class Minimizer implements IMinimizer {
     private static void copy_(File file, Writer out) throws IOException {
         if (logger_.isTraceEnabled())
             logger_.trace(String.format("merging file %1$s ...", file.getName()));
-        copy_(new FileReader(file), out);
+        copy_(new InputStreamReader(new FileInputStream(file),"UTF-8"), out);
     }
 
     public static void copy_(Reader in, Writer out) {

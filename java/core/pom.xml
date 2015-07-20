@@ -9,16 +9,24 @@
     <groupId>com.github.greenlaw110.greenscript</groupId>
     <artifactId>greenscript-core</artifactId>
     <packaging>jar</packaging>
-    <version>1.2.9d</version>
+    <version>1.2.9d-patched-SNAPSHOT</version>
 
     <name>GreenScript Core</name>
     <description>A Java package to manage and process Web Resources (Javascript/CSS)</description>
     <url>http://github.com/greenlaw110/greenscript</url>
-    
-    <scm>
-        <url>http://github.com/greenlaw110/greenscript</url>
-        <connection>scm:git:git://github.com/greenlaw110/greenscript.git</connection>
-    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>novacloud-releases</id>
+            <name>NovaCloud Release Repository</name>
+            <url>http://maven.novacloud.com/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>novacloud-snapshots</id>
+            <name>NovaCloud Snapshot Repository</name>
+            <url>http://maven.novacloud.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
     
     <licenses>
         <license>

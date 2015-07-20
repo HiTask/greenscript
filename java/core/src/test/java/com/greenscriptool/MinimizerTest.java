@@ -109,17 +109,17 @@ public class MinimizerTest extends BaseTest {
     @Test
     public void testUtf8FileCompress() throws Exception {
         jm.enableDisableInMemoryCache(false);
+        jm.enableDisableCache(false);
         // normal js case
         jm.enableDisableMinimize(true);
         jm.enableDisableCompress(true);
          //Resources.getResource()
         //jm.processStatic(new File(""))
-        IResource minimize = jm.minimize("/javascripts/a.js,/javascripts/b.js");
+        IResource minimize = jm.minimize("a,b");
         System.err.println("minimized file:" + minimize.getKey());
         String expected=new BufferedReader(minimize.getReader()).readLine();
         assertEquals("var a=function(){alert(\"a\")};var b=function(){alert(\"alert里包含中文消息\")};",expected);
-        minimize.getReader().close();
-        minimize.getWriter().close();
+
     }
 
     @Test
