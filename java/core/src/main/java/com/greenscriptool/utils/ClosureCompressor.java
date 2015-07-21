@@ -4,6 +4,7 @@ import com.google.javascript.jscomp.CompilationLevel;
 import com.google.javascript.jscomp.CompilerOptions;
 import com.google.javascript.jscomp.JSSourceFile;
 import com.google.javascript.jscomp.Result;
+import com.greenscriptool.Minimizer;
 import com.greenscriptool.ResourceType;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -33,7 +34,7 @@ public class ClosureCompressor implements ICompressor {
         type_ = type;
         com.google.javascript.jscomp.Compiler.setLoggingLevel(Level.ALL);
         options.setOutputCharset("UTF-8");
-        CompilationLevel.WHITESPACE_ONLY.setOptionsForCompilationLevel(options);
+        CompilationLevel.SIMPLE_OPTIMIZATIONS.setOptionsForCompilationLevel(options);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class ClosureCompressor implements ICompressor {
         if (result.success) {
             w.write(compiler.toSource());
         } else {
-            throw new Exception("error compile javascript");
+            Minimizer.copy_(r, w);
         }
     }
 }
