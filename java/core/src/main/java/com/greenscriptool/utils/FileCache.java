@@ -2,6 +2,7 @@ package com.greenscriptool.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,7 @@ public class FileCache {
         return new File(r_, fn);
     }
 
-    public File createTempFile(List<String> resourceNames, String extension) {
+    public File createTempFile(List<String> resourceNames, String extension)  {
         //try {
             if (!r_.isDirectory() && !r_.mkdir()) {
               throw new RuntimeException("cannot create temporary directory for: " + r_);

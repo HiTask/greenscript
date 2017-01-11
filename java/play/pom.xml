@@ -30,7 +30,7 @@ under the License.
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.greenlaw110.greenscript</groupId>
     <artifactId>greenscript-play</artifactId>
-    <version>1.2.9b</version>
+    <version>1.2.9d-patched-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Play! GreenScript Module</name>
@@ -54,6 +54,10 @@ under the License.
                 <enabled>false</enabled>
             </releases>
         </repository>
+        <repository>
+            <id>novacloud</id>
+            <url>http://maven.novacloud.com/nexus/content/groups/public/</url>
+        </repository>
     </repositories>
 
     <properties>
@@ -73,9 +77,9 @@ under the License.
         </dependency>
 
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>com.github.greenlaw110.greenscript</groupId>
             <artifactId>greenscript-core</artifactId>
-            <version>${project.version}</version>
+            <version>1.2.9d-patched-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>commons-lang</groupId>
@@ -128,29 +132,29 @@ under the License.
             </build>
         </profile>
 
-        <profile>
-            <id>dist</id>
+        <!--<profile>-->
+            <!--<id>dist</id>-->
 
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>make-assembly</id>
-                                <configuration>
-                                    <appendAssemblyId>false</appendAssemblyId>
-                                    <descriptors>
-                                        <descriptor>${basedir}/assembly-dist.xml</descriptor>
-                                    </descriptors>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+            <!--<build>-->
+                <!--<plugins>-->
+                    <!--<plugin>-->
+                        <!--<groupId>org.apache.maven.plugins</groupId>-->
+                        <!--<artifactId>maven-assembly-plugin</artifactId>-->
+                        <!--<executions>-->
+                            <!--<execution>-->
+                                <!--<id>make-assembly</id>-->
+                                <!--<configuration>-->
+                                    <!--<appendAssemblyId>false</appendAssemblyId>-->
+                                    <!--<descriptors>-->
+                                        <!--<descriptor>${basedir}/assembly-dist.xml</descriptor>-->
+                                    <!--</descriptors>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+                        <!--</executions>-->
+                    <!--</plugin>-->
+                <!--</plugins>-->
+            <!--</build>-->
+        <!--</profile>-->
     </profiles>
 
 </project>

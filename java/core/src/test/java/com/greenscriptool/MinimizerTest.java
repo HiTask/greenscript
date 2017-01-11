@@ -1,10 +1,15 @@
 package com.greenscriptool;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.common.io.Files;
+import com.google.common.io.Resources;
+import com.greenscriptool.utils.ClosureCompressor;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +43,7 @@ public class MinimizerTest extends BaseTest {
         }
         
         //echo (new File(rootDir).getAbsolutePath());
-        jm = new Minimizer(ResourceType.JS);
+        jm = new Minimizer(new ClosureCompressor(ResourceType.JS),ResourceType.JS);
         jm.setRootDir(rootDir.getAbsolutePath());
         jm.setResourceDir("javascripts");
         jm.setCacheDir(cacheDir);
@@ -100,13 +105,31 @@ public class MinimizerTest extends BaseTest {
         // v_("/css/a.css,/f1/c.css", "a,faked,/f1/c", cm);
         
     }
-    
+
     @Test
-    public void testProcessWithMinimizeEnabled() {
+    public void testUtf8FileCompress() throws Exception {
+        jm.enableDisableInMemoryCache(false);
+        jm.enableDisableCache(false);
         // normal js case
         jm.enableDisableMinimize(true);
-        p_("a,b,/c",jm);
+        jm.enableDisableCompress(true);
+         //Resources.getResource()
+        //jm.processStatic(new File(""))
+        IResource minimize = jm.minimize("a,b");
+        System.err.println("minimized file:" + minimize.getKey());
+        String expected=new BufferedReader(minimize.getReader()).readLine();
+        assertEquals("var a=function(){alert(\"a\")};var b=function(){alert(\"alert里包含中文消息\")};",expected);
+
+    }
+
+    @Test
+    public void testProcessWithMinimizeEnabled() {
+        jm.enableDisableInMemoryCache(false);
+        // normal js case
+        jm.enableDisableMinimize(true);
+        p_("a,b,/c", jm);
         assertSame(1, l.size());
+        jm.enableDisableCompress(true);
         assertTrue(l.get(0).startsWith(cacheUrlPath));
         p_("a,b,/c",jm);
         
